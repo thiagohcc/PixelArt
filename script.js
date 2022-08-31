@@ -1,6 +1,21 @@
 // Captura os elementos no DOM
 const buttonRandomColor = document.getElementById('button-random-color');
 const colorsInPalette = document.getElementsByClassName('color');
+const pixelBoard = document.getElementById('pixel-board');
+const pixelLine = document.getElementsByClassName('pixel-line');
+let numberOfPixelLines = 5;
+
+
+
+// Carrega as cores do localStorage
+window.onload = function() {
+  let lS = JSON.parse(localStorage.getItem('color'));
+  for (let index = 1; index < colorsInPalette.length; index += 1) {
+    let randomColor = colorsInPalette[index];
+    let oldColor = lS[index - 1];
+    randomColor.style.backgroundColor = oldColor;
+  }
+}
 
 // Gerador de cores aleatórias excluindo o branco e o preto.
 function colorGenerator() {
@@ -29,15 +44,21 @@ for (let index = 1; index < colorsInPalette.length; index += 1) {
   }
 }
 
-// Carrega as cores do localStorage
-window.onload = function() {
-  let lS = JSON.parse(localStorage.getItem('color'));
-  for (let index = 1; index < colorsInPalette.length; index += 1) {
-    let randomColor = colorsInPalette[index];
-    let oldColor = lS[index - 1];
-    randomColor.style.backgroundColor = oldColor;
-  }
+// Adiciona o quadro de pixels no pixel-board
+for (let index = 1; index <= numberOfPixelLines; index += 1) {
+  let pixelLine = document.createElement('div');
+  pixelLine.className = 'pixel-line';
+  pixelBoard.appendChild(pixelLine);
 }
 
+
+// Cria o pixel como uma div
+for (let index = 0; index < pixelLine.length; index += 1) {
+  for (let index = 0; index < numberOfPixelLines; index += 1) {
+    let pixel = document.createElement('div');
+    pixel.className = 'pixel';
+    pixelLine[index].appendChild(pixel);
+  }
+}
 
 

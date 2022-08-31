@@ -1,7 +1,22 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
 .color {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 39px;
+  height: 39px;
   border: 1px solid black;
   background-color: black;
+  /* margin: 0px; */
+}
+
+.pixel {
+  display: inline-block;
+  width: 39px;
+  height: 39px;
+  border: 1px solid black;
+  /* margin: auto 2px; */
+  background-color: white;
 }
