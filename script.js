@@ -9,30 +9,14 @@ let numberOfColorsInColorPalletes = 4;
 
 // Carrega as cores do localStorage
 window.onload = function() {
-  if (localStorage.color !== 'undefined') {
-    let lS = JSON.parse(localStorage.getItem('color'));
-    for (let index = 0; index < colorsInPalette.length; index += 1) {
-      let randomColor = colorsInPalette[index];
-      let oldColor = lS[index];
-      randomColor.style.backgroundColor = oldColor;
-    }
-    colorsInPalette[0].style.backgroundColor = 'r(0, 0, 0)';
-    console.log('aqui')
-  } else {
-    let initialColors = ["#fff100", "#ff8c00", "#e81123", "#ec008c", "#68217a", "#00188f", "#00bcf2", "#00b294", "#009e49", "#bad80a"];
-    colorsInPalette[0].style.backgroundColor = 'r(0, 0, 0)';
-    for (let index = 0; index < initialColors.length; index += 1) {
-      colorsInPalette[index + 1].style.backgroundColor = initialColors[index];
-    }
-    console.log('ou aqui')
+  let lS = JSON.parse(localStorage.getItem('color'));
+  for (let index = 1; index < colorsInPalette.length; index += 1) {
+    let randomColor = colorsInPalette[index];
+    let oldColor = lS[index - 1];
+    randomColor.style.backgroundColor = oldColor;
   }
-
-
+  colorsInPalette[0].className = 'color selected';
 }
-
-// Gera as cores iniciais
-
-
 
 // Gerador de cores aleatórias excluindo o branco e o preto.
 function colorGenerator() {
@@ -59,24 +43,6 @@ for (let index = 1; index < colorsInPalette.length; index += 1) {
     color.push(randomColor.style.backgroundColor);
     localStorage.color = JSON.stringify(color);
   }
-  colorsInPalette[0].className = 'color selected';
-}
-
-// Adiciona o quadro de pixels no pixel-board
-for (let index = 1; index <= numberOfPixelLines; index += 1) {
-  let pixelLine = document.createElement('div');
-  pixelLine.className = 'pixel-line';
-  pixelBoard.appendChild(pixelLine);
-}
-
-
-// Cria o pixel como uma div
-for (let index = 0; index < pixelLine.length; index += 1) {
-  for (let index = 0; index < numberOfPixelLines; index += 1) {
-    let pixel = document.createElement('div');
-    pixel.className = 'pixel';
-    pixelLine[index].appendChild(pixel);
-  }
 }
 
 // Aplica a class selected na cor escolhida
@@ -95,6 +61,7 @@ for (let index = 0; index < colorsInPalette.length; index += 1) {
   })
 }
 
+// Aplica a cor escolhida no pixel selecionado
 for (let index = 0; index < pixel.length; index += 1) {
   let selectedPixel = pixel[index];
   let selectedColor = document.getElementsByClassName('color selected');
