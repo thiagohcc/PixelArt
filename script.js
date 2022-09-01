@@ -1,16 +1,22 @@
 // Elementos capturados pelo DOM
-const title = document.getElementById('title');
 const cores = document.getElementsByClassName('color');
 
 // Variaveis de ajuste de quantidades
 let numeroDeCoresNaPaleta = 4;
+let numeroDeLinhas = 5;
 
 // Início do código
+
+// Cria o titulo h1
+const title = document.createElement('h1');
+title.id = 'title';
+title.innerText = 'Paleta de Cores';
+document.body.appendChild(title);
 
 // Cria a section do color-palette
 const paletaDeCores = document.createElement('section');
 paletaDeCores.className = 'color-palette';
-title.appendChild(paletaDeCores);
+document.body.appendChild(paletaDeCores);
 
 // Cria o espaço para as quatro cores na paleta de cores
 for (let index = 1; index <= numeroDeCoresNaPaleta; index += 1) {
@@ -66,6 +72,21 @@ window.onload = function() {
     for (let index = 0; index < numeroDeCoresNaPaleta; index += 1) {
       cores[index].style.backgroundColor = coresDoLocalStorage[index];
     }
+  }
+}
+
+// Criando o quadro de pixels
+const quadroPixels = document.createElement('section');
+quadroPixels.id = 'pixel-board';
+document.body.appendChild(quadroPixels);
+
+for (let index = 1; index <= numeroDeLinhas; index += 1) {
+  const linhaPixels = document.createElement('div');
+  quadroPixels.appendChild(linhaPixels);
+  for (let index = 1; index <= numeroDeLinhas; index += 1) {
+    const pixel = document.createElement('div');
+    pixel.className = 'pixel';
+    linhaPixels.appendChild(pixel);
   }
 }
 

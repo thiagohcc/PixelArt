@@ -5,6 +5,10 @@
   border: 1px solid black;
 }
 
+.pixel {
+  display: inline-block;
+}
+
 #cor1 {
   background-color: black;
 }
