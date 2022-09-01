@@ -42,6 +42,7 @@ for (let index = 1; index < colorsInPalette.length; index += 1) {
     color.push(randomColor.style.backgroundColor);
     localStorage.color = JSON.stringify(color);
   }
+  colorsInPalette[0].style.backgroundColor = 'rgb(0, 0, 0)';
   colorsInPalette[0].className = 'color selected';
 }
 
@@ -73,10 +74,19 @@ for (let index = 0; index < colorsInPalette.length; index += 1) {
         }
       }
       color.className = 'color selected';
+      console.log(color.style.backgroundColor);
     }
   })
 }
 
-
+for (let index = 0; index < pixel.length; index += 1) {
+  let selectedPixel = pixel[index];
+  let selectedColor = document.getElementsByClassName('color selected');
+  selectedPixel.addEventListener('click', colorPixel);
+  function colorPixel() {
+    let bgColor = selectedColor[0].style.backgroundColor;
+    selectedPixel.style.backgroundColor = bgColor;
+  }
+}
 
 
