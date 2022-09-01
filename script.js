@@ -73,6 +73,8 @@ window.onload = function() {
       cores[index].style.backgroundColor = coresDoLocalStorage[index];
     }
   }
+  // Defini a cor preta como selecionada
+  cores[0].className = 'color selected';
 }
 
 // Criando o quadro de pixels
@@ -89,6 +91,21 @@ for (let index = 1; index <= numeroDeLinhas; index += 1) {
     pixel.className = 'pixel';
     linhaPixels.appendChild(pixel);
   }
+}
+
+// Altera a classe da cor selecionada para 'color selected' e as demais apenas color
+for (let index = 0; index < cores.length; index += 1) {
+  let cor = cores[index];
+  cor.addEventListener('click', function() {
+    if (cor.className === 'color') {
+      for (let index = 0; index < cores.length; index += 1) {
+        if (cores[index] != 'color') {
+          cores[index].className = 'color';
+        }
+      }
+      cor.className = 'color selected';
+    }
+  })
 }
 
 
