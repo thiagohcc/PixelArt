@@ -7,7 +7,15 @@
 
 .pixel {
   display: inline-block;
+  width: 39px;
+  height: 39px;
+  border: 1px solid black;
 }
+
+.linha-pixel {
+  line-height: 0px;
+}
+
 
 #cor1 {
   background-color: black;

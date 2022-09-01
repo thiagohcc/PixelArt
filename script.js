@@ -82,6 +82,7 @@ document.body.appendChild(quadroPixels);
 
 for (let index = 1; index <= numeroDeLinhas; index += 1) {
   const linhaPixels = document.createElement('div');
+  linhaPixels.className = 'linha-pixel';
   quadroPixels.appendChild(linhaPixels);
   for (let index = 1; index <= numeroDeLinhas; index += 1) {
     const pixel = document.createElement('div');
@@ -89,4 +90,5 @@ for (let index = 1; index <= numeroDeLinhas; index += 1) {
     linhaPixels.appendChild(pixel);
   }
 }
+
 
