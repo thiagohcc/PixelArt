@@ -16,6 +16,7 @@ title.appendChild(paletaDeCores);
 for (let index = 1; index <= numeroDeCoresNaPaleta; index += 1) {
   let color = document.createElement('div');
   color.className = 'color';
+  color.id = 'cor' + index;
   paletaDeCores.appendChild(color);
 }
 
@@ -46,10 +47,25 @@ function geradorDeCores() {
   return corAleatoria;
 }
 
-// Faz o botão gerar cores aleatórias na paletade cores
+// Faz o botão gerar cores aleatórias na paletade cores e salva no localStorage
 botao.addEventListener('click', criaCoresAleatorias);
 function criaCoresAleatorias() {
+  let ultimasCores = ['rgb(0, 0, 0)',];
   for (let index = 1; index < numeroDeCoresNaPaleta; index += 1) {
     cores[index].style.backgroundColor = geradorDeCores();
+    cores[0].style.backgroundColor = 'rgb(0, 0, 0)';
+    ultimasCores.push(cores[index].style.backgroundColor);
+    localStorage.colorPalette = JSON.stringify(ultimasCores);
   }
 }
+
+// Carrega as cores do localStorage na paleta de cores
+window.onload = function() {
+  if (localStorage.colorPalette !== undefined) {
+    let coresDoLocalStorage = JSON.parse(localStorage.colorPalette);
+    for (let index = 0; index < numeroDeCoresNaPaleta; index += 1) {
+      cores[index].style.backgroundColor = coresDoLocalStorage[index];
+    }
+  }
+}
+

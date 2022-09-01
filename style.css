@@ -4,3 +4,19 @@
   height: 39px;
   border: 1px solid black;
 }
+
+#cor1 {
+  background-color: black;
+}
+
+#cor2 {
+  background-color: red;
+}
+
+#cor3 {
+  background-color: green;
+}
+
+#cor4 {
+  background-color: blue;
+}
