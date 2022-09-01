@@ -100,8 +100,8 @@ for (let index = 0; index < pixel.length; index += 1) {
   let selectedColor = document.getElementsByClassName('color selected');
   selectedPixel.addEventListener('click', colorPixel);
   function colorPixel() {
-    let bgColor = selectedColor[0].style.backgroundColor;
-    selectedPixel.style.backgroundColor = bgColor;
+    let bgColorSelected = selectedColor[0].style.backgroundColor;
+    selectedPixel.style.backgroundColor = bgColorSelected;
   }
 }
 
