@@ -6,8 +6,6 @@ const pixelLine = document.getElementsByClassName('pixel-line');
 const pixel = document.getElementsByClassName('pixel');
 let numberOfPixelLines = 5;
 
-
-
 // Carrega as cores do localStorage
 window.onload = function() {
   let lS = JSON.parse(localStorage.getItem('color'));
@@ -63,5 +61,22 @@ for (let index = 0; index < pixelLine.length; index += 1) {
     pixelLine[index].appendChild(pixel);
   }
 }
+
+// Aplica a class selected na cor escolhida
+for (let index = 0; index < colorsInPalette.length; index += 1) {
+  let color = colorsInPalette[index];
+  color.addEventListener('click', function() {
+    if (color.className === 'color') {
+      for (let index = 0; index < colorsInPalette.length; index += 1) {
+        if (colorsInPalette[index] != color) {
+          colorsInPalette[index].className = 'color';
+        }
+      }
+      color.className = 'color selected';
+    }
+  })
+}
+
+
 
 
