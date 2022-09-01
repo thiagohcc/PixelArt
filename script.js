@@ -5,17 +5,34 @@ const pixelBoard = document.getElementById('pixel-board');
 const pixelLine = document.getElementsByClassName('pixel-line');
 const pixel = document.getElementsByClassName('pixel');
 let numberOfPixelLines = 5;
+let numberOfColorsInColorPalletes = 4;
 
 // Carrega as cores do localStorage
 window.onload = function() {
-  let lS = JSON.parse(localStorage.getItem('color'));
-  for (let index = 1; index < colorsInPalette.length; index += 1) {
-    let randomColor = colorsInPalette[index];
-    let oldColor = lS[index - 1];
-    randomColor.style.backgroundColor = oldColor;
+  if (localStorage.color !== 'undefined') {
+    let lS = JSON.parse(localStorage.getItem('color'));
+    for (let index = 0; index < colorsInPalette.length; index += 1) {
+      let randomColor = colorsInPalette[index];
+      let oldColor = lS[index];
+      randomColor.style.backgroundColor = oldColor;
+    }
+    colorsInPalette[0].style.backgroundColor = 'r(0, 0, 0)';
+    console.log('aqui')
+  } else {
+    let initialColors = ["#fff100", "#ff8c00", "#e81123", "#ec008c", "#68217a", "#00188f", "#00bcf2", "#00b294", "#009e49", "#bad80a"];
+    colorsInPalette[0].style.backgroundColor = 'r(0, 0, 0)';
+    for (let index = 0; index < initialColors.length; index += 1) {
+      colorsInPalette[index + 1].style.backgroundColor = initialColors[index];
+    }
+    console.log('ou aqui')
   }
 
+
 }
+
+// Gera as cores iniciais
+
+
 
 // Gerador de cores aleatórias excluindo o branco e o preto.
 function colorGenerator() {
@@ -42,7 +59,6 @@ for (let index = 1; index < colorsInPalette.length; index += 1) {
     color.push(randomColor.style.backgroundColor);
     localStorage.color = JSON.stringify(color);
   }
-  colorsInPalette[0].style.backgroundColor = 'rgb(0, 0, 0)';
   colorsInPalette[0].className = 'color selected';
 }
 
