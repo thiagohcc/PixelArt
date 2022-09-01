@@ -3,6 +3,7 @@ const buttonRandomColor = document.getElementById('button-random-color');
 const colorsInPalette = document.getElementsByClassName('color');
 const pixelBoard = document.getElementById('pixel-board');
 const pixelLine = document.getElementsByClassName('pixel-line');
+const pixel = document.getElementsByClassName('pixel');
 let numberOfPixelLines = 5;
 
 
@@ -15,6 +16,7 @@ window.onload = function() {
     let oldColor = lS[index - 1];
     randomColor.style.backgroundColor = oldColor;
   }
+
 }
 
 // Gerador de cores aleatórias excluindo o branco e o preto.
@@ -42,6 +44,7 @@ for (let index = 1; index < colorsInPalette.length; index += 1) {
     color.push(randomColor.style.backgroundColor);
     localStorage.color = JSON.stringify(color);
   }
+  colorsInPalette[0].className = 'color selected';
 }
 
 // Adiciona o quadro de pixels no pixel-board
