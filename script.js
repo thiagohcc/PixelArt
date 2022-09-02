@@ -89,6 +89,9 @@ window.onload = function() {
 // Campo para preencher novo tamanho tamanha do quadro de pixel
 const campoNovoQuadro = document.createElement('input');
 campoNovoQuadro.id = 'board-size';
+campoNovoQuadro.setAttribute('type', 'number')
+campoNovoQuadro.setAttribute('min', '5');
+campoNovoQuadro.setAttribute('max', '50');
 document.body.appendChild(campoNovoQuadro);
 
 // Botão para criar o novo tamanho tamanha do quadro de pixel
@@ -107,9 +110,6 @@ document.body.appendChild(btnResetColor);
 // Criando o pixel board
 const quadroPixels = document.createElement('section');
 quadroPixels.id = 'pixel-board';
-// quadroPixels.setAttribute('type', 'number');
-// quadroPixels.setAttribute('min', 1);
-// quadroPixels.setAttribute('max', 25);
 document.body.appendChild(quadroPixels);
 
 // Criando o quadro de pixels
@@ -128,13 +128,21 @@ function criandoOsPixels(numeroDeLinhas) {
 criandoOsPixels(numeroDeLinhas);
 
 function deletaAntigoECriaNovoQuadro() {
-  if (campoNovoQuadro.value >= 5 && campoNovoQuadro.value <= 25) {
+  if (campoNovoQuadro.value == 0) {
+    window.alert('Board inválido!')
+  } else {
     deletandoQuadroPixels();
     numeroDeLinhas = campoNovoQuadro.value;
     criandoOsPixels(numeroDeLinhas);
-  } else {
-    window.alert('Quantidade inválida! TRente um número de 5 à 25.')
+    if (campoNovoQuadro.value >= 5 && campoNovoQuadro.value <= 50) {
+      deletandoQuadroPixels();
+      numeroDeLinhas = campoNovoQuadro.value;
+      criandoOsPixels(numeroDeLinhas);
+    } else {
+      window.alert('Board inválido! TRente um número de 5 à 50.')
+    }
   }
+
 }
 
 // Trocando o pixel board
