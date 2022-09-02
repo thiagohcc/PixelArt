@@ -15,7 +15,7 @@ document.body.appendChild(title);
 
 // Cria a section do color-palette
 const paletaDeCores = document.createElement('section');
-paletaDeCores.className = 'color-palette';
+paletaDeCores.id = 'color-palette';
 document.body.appendChild(paletaDeCores);
 
 // Cria o espaço para as quatro cores na paleta de cores
@@ -73,7 +73,7 @@ window.onload = function() {
       cores[index].style.backgroundColor = coresDoLocalStorage[index];
     }
   }
-  
+
 // Importa o desenho salvo no localStorage
   if (localStorage.pixelBoard !== undefined) {
     let desenho = JSON.parse(localStorage.pixelBoard);
