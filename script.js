@@ -84,6 +84,14 @@ window.onload = function() {
 
   // Defini a cor preta como selecionada
   cores[0].className = 'color selected';
+
+  // Importando o tamanho do pixel board
+  if (localStorage.boardSize) {
+    numeroDeLinhas = JSON.parse(localStorage.boardSize);
+    deletandoQuadroPixels();
+    criandoOsPixels(numeroDeLinhas);
+  }
+  console.log(numeroDeLinhas)
 }
 
 // Campo para preencher novo tamanho tamanha do quadro de pixel
@@ -127,22 +135,15 @@ function criandoOsPixels(numeroDeLinhas) {
 }
 criandoOsPixels(numeroDeLinhas);
 
-function deletaAntigoECriaNovoQuadro() {
-  if (campoNovoQuadro.value == 0) {
+function deletaAntigoECriaNovoQuadro(numeroDeLinhas) {
+  if (campoNovoQuadro.value < 5 || campoNovoQuadro.value > 50) {
     window.alert('Board inválido!')
   } else {
     deletandoQuadroPixels();
     numeroDeLinhas = campoNovoQuadro.value;
     criandoOsPixels(numeroDeLinhas);
-    if (campoNovoQuadro.value >= 5 && campoNovoQuadro.value <= 50) {
-      deletandoQuadroPixels();
-      numeroDeLinhas = campoNovoQuadro.value;
-      criandoOsPixels(numeroDeLinhas);
-    } else {
-      window.alert('Board inválido! TRente um número de 5 à 50.')
-    }
+    localStorage.boardSize = JSON.stringify(numeroDeLinhas);
   }
-
 }
 
 // Trocando o pixel board
@@ -168,7 +169,7 @@ for (let index = 0; index < cores.length; index += 1) {
   })
 }
 
-// Color o pixel com a cor selecionada
+// Colorindo o pixel com a cor selecionada
 const pixel = document.getElementsByClassName('pixel');
 for (let index = 0; index < pixel.length; index += 1) {
   pixel[index].addEventListener('click', colorePixel);
