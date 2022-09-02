@@ -93,7 +93,7 @@ for (let index = 1; index <= numeroDeLinhas; index += 1) {
   }
 }
 
-// Altera a classe da cor selecionada para 'color selected' e as demais apenas color
+// Altera a classe da cor selecionada para 'color selected' e as demais apenas color #8
 for (let index = 0; index < cores.length; index += 1) {
   let cor = cores[index];
   cor.addEventListener('click', function() {
@@ -108,4 +108,19 @@ for (let index = 0; index < cores.length; index += 1) {
   })
 }
 
+// Color o pixel com a cor selecionada
+const pixel = document.getElementsByClassName('pixel');
+console.log(pixel[0]);
+
+
+
+for (let index = 0; index < pixel.length; index += 1) {
+  pixel[index].addEventListener('click', colorePixel);
+  function colorePixel() {
+    let corSelecionada = document.getElementsByClassName('color selected');
+    console.log(corSelecionada[0]);
+
+    pixel[index].style.backgroundColor = corSelecionada[0].style.backgroundColor;
+  }
+}
 
