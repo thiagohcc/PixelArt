@@ -98,7 +98,7 @@ window.onload = function() {
 const campoNovoQuadro = document.createElement('input');
 campoNovoQuadro.id = 'board-size';
 campoNovoQuadro.setAttribute('type', 'number')
-campoNovoQuadro.setAttribute('min', '5');
+campoNovoQuadro.setAttribute('min', '1');
 campoNovoQuadro.setAttribute('max', '50');
 document.body.appendChild(campoNovoQuadro);
 
@@ -136,8 +136,18 @@ function criandoOsPixels(numeroDeLinhas) {
 criandoOsPixels(numeroDeLinhas);
 
 function deletaAntigoECriaNovoQuadro(numeroDeLinhas) {
-  if (campoNovoQuadro.value < 5 || campoNovoQuadro.value > 50) {
+  if (campoNovoQuadro.value < 5) {
     window.alert('Board inválido!')
+    deletandoQuadroPixels();
+    numeroDeLinhas = 5;
+    criandoOsPixels(numeroDeLinhas);
+    localStorage.boardSize = JSON.stringify(numeroDeLinhas);
+  } else if (campoNovoQuadro.value > 50) {
+    window.alert('Board inválido!')
+    deletandoQuadroPixels();
+    numeroDeLinhas = 50;
+    criandoOsPixels(numeroDeLinhas);
+    localStorage.boardSize = JSON.stringify(numeroDeLinhas);
   } else {
     deletandoQuadroPixels();
     numeroDeLinhas = campoNovoQuadro.value;
@@ -148,6 +158,7 @@ function deletaAntigoECriaNovoQuadro(numeroDeLinhas) {
 
 // Trocando o pixel board
 btnNovoQuadro.addEventListener('click', deletaAntigoECriaNovoQuadro);
+
 
 // Deletando o quadro de pixels
 function deletandoQuadroPixels() {
