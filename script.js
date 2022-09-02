@@ -86,6 +86,17 @@ window.onload = function() {
   cores[0].className = 'color selected';
 }
 
+// Campo para preencher novo tamanho tamanha do quadro de pixel
+const campoNovoQuadro = document.createElement('input');
+campoNovoQuadro.id = 'board-size';
+document.body.appendChild(campoNovoQuadro);
+
+// Botão para criar o novo tamanho tamanha do quadro de pixel
+const btnNovoQuadro = document.createElement('button');
+btnNovoQuadro.id = 'generate-board';
+btnNovoQuadro.innerText = 'VQV';
+document.body.appendChild(btnNovoQuadro);
+
 // Cria o botão que limpa o quadro de pixels
 const btnResetColor = document.createElement('button');
 btnResetColor.id = 'clear-board';
@@ -93,20 +104,45 @@ btnResetColor.innerText = 'Limpar';
 document.body.appendChild(btnResetColor);
 
 
-// Criando o quadro de pixels
+// Criando o pixel board
 const quadroPixels = document.createElement('section');
 quadroPixels.id = 'pixel-board';
+// quadroPixels.setAttribute('type', 'number');
+// quadroPixels.setAttribute('min', 1);
+// quadroPixels.setAttribute('max', 25);
 document.body.appendChild(quadroPixels);
 
-for (let index = 1; index <= numeroDeLinhas; index += 1) {
-  const linhaPixels = document.createElement('div');
-  linhaPixels.className = 'linha-pixel';
-  quadroPixels.appendChild(linhaPixels);
+// Criando o quadro de pixels
+function criandoOsPixels(numeroDeLinhas) {
   for (let index = 1; index <= numeroDeLinhas; index += 1) {
-    const pixel = document.createElement('div');
-    pixel.className = 'pixel';
-    linhaPixels.appendChild(pixel);
+    const linhaPixels = document.createElement('div');
+    linhaPixels.className = 'linha-pixel';
+    quadroPixels.appendChild(linhaPixels);
+    for (let index = 1; index <= numeroDeLinhas; index += 1) {
+      const pixel = document.createElement('div');
+      pixel.className = 'pixel';
+      linhaPixels.appendChild(pixel);
+    }
   }
+}
+criandoOsPixels(numeroDeLinhas);
+
+function deletaAntigoECriaNovoQuadro() {
+  if (campoNovoQuadro.value >= 5 && campoNovoQuadro.value <= 25) {
+    deletandoQuadroPixels();
+    numeroDeLinhas = campoNovoQuadro.value;
+    criandoOsPixels(numeroDeLinhas);
+  } else {
+    window.alert('Quantidade inválida! TRente um número de 5 à 25.')
+  }
+}
+
+// Trocando o pixel board
+btnNovoQuadro.addEventListener('click', deletaAntigoECriaNovoQuadro);
+
+// Deletando o quadro de pixels
+function deletandoQuadroPixels() {
+  quadroPixels.innerHTML = '';
 }
 
 // Altera a classe da cor selecionada para 'color selected' e as demais apenas color #8
@@ -151,3 +187,4 @@ function salvaDesenho() {
     localStorage.pixelBoard = JSON.stringify(desenho);
   }
 }
+
