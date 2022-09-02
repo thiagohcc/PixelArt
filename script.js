@@ -73,6 +73,15 @@ window.onload = function() {
       cores[index].style.backgroundColor = coresDoLocalStorage[index];
     }
   }
+  
+// Importa o desenho salvo no localStorage
+  if (localStorage.pixelBoard !== undefined) {
+    let desenho = JSON.parse(localStorage.pixelBoard);
+    for (let index = 0; index < pixel.length; index += 1) {
+      pixel[index].style.backgroundColor = desenho[index];
+    }
+  }
+
   // Defini a cor preta como selecionada
   cores[0].className = 'color selected';
 }
@@ -122,6 +131,7 @@ for (let index = 0; index < pixel.length; index += 1) {
   function colorePixel() {
     let corSelecionada = document.getElementsByClassName('color selected');
     pixel[index].style.backgroundColor = corSelecionada[0].style.backgroundColor;
+    salvaDesenho();
   }
 }
 
@@ -130,5 +140,14 @@ btnResetColor.addEventListener('click', limpaQuadro);
 function limpaQuadro() {
   for (let index = 0; index < pixel.length; index += 1) {
     pixel[index].style.backgroundColor = '#FFFFFF'
+  }
+}
+
+// Salva o desenho no localStorage
+function salvaDesenho() {
+  let desenho = [];
+  for (let index = 0; index < pixel.length; index += 1) {
+    desenho.push(pixel[index].style.backgroundColor);
+    localStorage.pixelBoard = JSON.stringify(desenho);
   }
 }
