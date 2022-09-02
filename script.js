@@ -77,6 +77,13 @@ window.onload = function() {
   cores[0].className = 'color selected';
 }
 
+// Cria o botão que limpa o quadro de pixels
+const btnResetColor = document.createElement('button');
+btnResetColor.id = 'clear-board';
+btnResetColor.innerText = 'Limpar';
+document.body.appendChild(btnResetColor);
+
+
 // Criando o quadro de pixels
 const quadroPixels = document.createElement('section');
 quadroPixels.id = 'pixel-board';
@@ -110,17 +117,18 @@ for (let index = 0; index < cores.length; index += 1) {
 
 // Color o pixel com a cor selecionada
 const pixel = document.getElementsByClassName('pixel');
-console.log(pixel[0]);
-
-
-
 for (let index = 0; index < pixel.length; index += 1) {
   pixel[index].addEventListener('click', colorePixel);
   function colorePixel() {
     let corSelecionada = document.getElementsByClassName('color selected');
-    console.log(corSelecionada[0]);
-
     pixel[index].style.backgroundColor = corSelecionada[0].style.backgroundColor;
   }
 }
 
+// Cria a ação de limpar o quadro com o botão Limpar
+btnResetColor.addEventListener('click', limpaQuadro);
+function limpaQuadro() {
+  for (let index = 0; index < pixel.length; index += 1) {
+    pixel[index].style.backgroundColor = '#FFFFFF'
+  }
+}
