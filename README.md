@@ -1,4 +1,4 @@
-# :construction: README em construção ! :construction:
+# :construction: Descrição básica. Readme em construção! :construction:
 
 Projeto de aprendizagem da linguagem Javascript, onde é criado um quadro de pixels para colorir.
 Nesse projeto além dos conhecimentos do javascript, foi abordado também o conceito de localstorage para salvar informações relevantes ao projeto. 
